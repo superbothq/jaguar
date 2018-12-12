@@ -13,8 +13,6 @@ module Jaguar
             sequence << string_or_array_or_symbol_or_hash
           when "Hash"
             opts.merge!(string_or_array_or_symbol_or_hash)
-          else
-            raise Jaguar::Error, "not array or hash: #{string_or_array_or_symbol_or_hash}"
           end
         end
 
