@@ -5,6 +5,9 @@ require "pry"
 module Jaguar
   module CLI
     class RootCommand
+      include Contracts::Core
+
+      Contract ({ eval_string: Jaguar::C::Maybe[String] }) => nil
       def self.run(eval_string:nil)
         TOPLEVEL_BINDING.eval """
           include Jaguar::DSL
@@ -14,6 +17,7 @@ module Jaguar
         else
           TOPLEVEL_BINDING.eval "Pry.start"
         end
+        nil
       end
     end
   end

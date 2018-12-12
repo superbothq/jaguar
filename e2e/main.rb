@@ -9,6 +9,6 @@ ctrl+c received!"
   did_receive_ctrl_c = true
 }
 
-Mouse.move 10,10
+Mouse.move(10,10)
 Keyboard.type "hello", :enter, [:ctrl, "c"]
 
