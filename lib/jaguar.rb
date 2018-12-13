@@ -20,6 +20,26 @@ module Jaguar
     @@driver = d
     nil
   end
+
+  Contract Jaguar::C::Args[Any] => nil
+  def self.debug(*args)
+    return unless ENV["JAGUAR_DEBUG"] == "yes"
+
+    print "JAGUAR DEBUG: "
+    for arg in args
+      arg_formatted = case arg
+      when String
+        arg
+      else
+        arg.inspect
+      end
+      print arg_formatted
+      print " "
+    end
+    puts ""
+    nil
+  end
 end
 
 require_relative "jaguar/version"
+require_relative "jaguar/helpers"

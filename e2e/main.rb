@@ -11,4 +11,4 @@ ctrl+c received!"
 
 Mouse.move(10,10)
 Keyboard.type "hello", :enter, [:ctrl, "c"]
-
+Keyboard.type [:cmd, [:tab]], [:cmd, [:tab]]
