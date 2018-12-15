@@ -1,12 +1,12 @@
 PATH
   remote: ../delirium
   specs:
-    delirium (0.1.0)
+    delirium (0.2.0)
 
 PATH
   remote: .
   specs:
-    jaguar (0.1.0)
+    jaguar (0.1.1)
       contracts
       pry
 
@@ -39,7 +39,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.17)
+  bundler (~> 1.16)
   delirium!
   jaguar!
   rake (~> 10.0)

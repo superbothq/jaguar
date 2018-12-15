@@ -8,14 +8,14 @@ module Jaguar
 
   class Error < StandardError; end
 
-  @@driver = Delirium::Driver.class_for_current_platform.new
+  @@driver = Delirium::Platform.class_for_current_platform.new
 
-  Contract nil => Delirium::Driver::Base
+  Contract nil => Delirium::Platform::Base
   def self.driver
     @@driver
   end
 
-  Contract Delirium::Driver::Base => nil
+  Contract Delirium::Platform::Base => nil
   def self.driver=(d)
     @@driver = d
     nil
