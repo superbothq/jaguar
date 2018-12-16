@@ -4,9 +4,9 @@ module Jaguar
       module Type
         include Contracts::Core
 
-        Contract Jaguar::C::Args[Jaguar::C::Or[String,Array,Symbol,Hash]] => self.class
-        def self.type(*string_or_arrays_or_symbol_or_hashes)
-          opts, type_sequence = parse_type_args_to_opts_and_type_sequence string_or_arrays_or_symbol_or_hashes
+        Contract Jaguar::C::Args[Jaguar::C::Or[Integer,String,Symbol,Array,Hash]] => self.class
+        def self.type(*integer_or_string_or_symbol_or_arrays_or_hashes)
+          opts, type_sequence = parse_type_args_to_opts_and_type_sequence integer_or_string_or_symbol_or_arrays_or_hashes
 
           sequence = unpack_type_sequence type_sequence
           delay = opts[:delay]
@@ -17,7 +17,7 @@ module Jaguar
             already_delayed = false
 
             case s
-            when String
+            when String,Integer
               Jaguar.debug "direct_write_instead_of_key_presses?(delay)", direct_write_instead_of_key_presses?(delay)
 
               if direct_write_instead_of_key_presses?(delay)
@@ -67,16 +67,16 @@ module Jaguar
 
         private
 
-        Contract Jaguar::C::Args[Jaguar::C::Or[String,Array,Symbol,Hash]] => Array[Hash,Array]
+        Contract Jaguar::C::Args[Jaguar::C::Or[Integer,String,Symbol,Array,Hash]] => Array[Hash,Array]
         def self.parse_type_args_to_opts_and_type_sequence(args)
           opts = {}
           type_sequence = []
-          args.each do |string_or_array_or_symbol_or_hash|
-            case string_or_array_or_symbol_or_hash.class.name
-            when "String", "Array", "Symbol"
-              type_sequence << string_or_array_or_symbol_or_hash
+          args.each do |integer_or_string_or_symbol_or_array_or_hash|
+            case integer_or_string_or_symbol_or_array_or_hash.class.name
+            when "Integer","String", "Array", "Symbol"
+              type_sequence << integer_or_string_or_symbol_or_array_or_hash
             when "Hash"
-              opts.merge!(string_or_array_or_symbol_or_hash)
+              opts.merge!(integer_or_string_or_symbol_or_array_or_hash)
             end
           end
           [opts, type_sequence]
